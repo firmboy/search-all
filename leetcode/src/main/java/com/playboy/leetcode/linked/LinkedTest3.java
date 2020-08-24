@@ -6,25 +6,23 @@ import org.slf4j.LoggerFactory;
 /**
  * @author playboy
  * @create 2020-07-17 6:40 下午
- * @description
- * @serviceLogic 21
+ * @description 21
+ * @serviceLogic https://leetcode-cn.com/problems/merge-two-sorted-lists/
  **/
 public class LinkedTest3 {
     private static final Logger log = LoggerFactory.getLogger(LinkedTest3.class);
 
-
-    /**
-     * 迭代
-     *
-     * @param l1
-     * @param l2
-     * @return
-     */
-    public static ListNode mergeTwoLists1(ListNode l1, ListNode l2) {
+    public static ListNode mergeTwoListsA(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
         ListNode head = new ListNode(0);
         ListNode node = head;
         while (l1 != null && l2 != null) {
-            if (l1.val <= l2.val) {
+            if (l1.val < l2.val) {
                 node.next = l1;
                 l1 = l1.next;
             } else {
@@ -42,13 +40,6 @@ public class LinkedTest3 {
         return head.next;
     }
 
-    /**
-     * 递归
-     *
-     * @param l1
-     * @param l2
-     * @return
-     */
     public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;

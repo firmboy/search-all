@@ -23,25 +23,29 @@ public class LinkedTest4 {
     }
 
 
-    /**
-     * 递归思路
-     *
-     * @param head
-     * @return
-     */
     public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return head;
+        }
         ListNode node = head;
         ListNode pre = null;
+
         return re(node, pre);
     }
 
+    /**
+     * 递归公式
+     *
+     * @param node
+     * @param pre
+     */
     public ListNode re(ListNode node, ListNode pre) {
-        if (node != null) {
-            ListNode temp = node.next;
-            node.next = pre;
-            return re(temp, node);
+        if (node == null) {
+            return pre;
         }
-        return pre;
+        ListNode temp = node.next;
+        node.next = pre;
+        return re(temp, node);
     }
 
 
@@ -56,16 +60,14 @@ public class LinkedTest4 {
             return head;
         }
         ListNode node = head;
-        ListNode next = head.next;
-        ListNode prv = null;
-        while (next != null) {
-            node.next = prv;
-            prv = node;
+        ListNode pre = null;
+        while (node != null) {
+            ListNode next = node.next;
+            node.next = pre;
+            pre = node;
             node = next;
-            next = node.next;
         }
-        node.next = prv;
-        return node;
+        return pre;
     }
 
 
